@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Solicitud de {{nombre}} {{apellidos}}</title>
+    <link rel="stylesheet" href="static/admin/css/estilos_pdf.css">
+</head>
+<body>
+    <div id="header_content">
+        <img class='logo_cab' src="static/admin/img/logo.jpg" alt="Logo de Tangrambpm" />
+    </div>
+
+    <div id="contenido">
+        <span>Estimado {{nombre}} {{apellidos}} con DNI {{dni}}, <br> 
+            <p>A continuación, recogemos el texto de su solicitud:</p>
+            <p>{{texto}}</p>
+            <p>Dándole las gracias atentamente a fecha de {{fecha}}.</p>            
+        </span>
+    </div>
+
+    <div id="footer_content">
+        <img class='log_pie' src="static/admin/img/logo.jpg" alt="Logo de Tangrambpm" />
+    </div>
+</body>
+</html>

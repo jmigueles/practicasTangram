@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Formulario de usuario {% endblock title %}
+{% block js %}
+<script src="{% static 'admin/js/validacion.js' %}"></script>
+{% endblock js%}
+
+{% block content %}
+    {%include 'includes/header.html' %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-6">
+                <h1 class="display-5 text-center">Formulario de solicitud</h1>
+                <form class="shadow-lg p-3 mb-5 bg-body rounded" action="{% url 'firma_app:firma-datos' %}" method='POST'>{% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="Introduzca su nombre...">
+                        <div id="error_nombre" class="form-text text-danger"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="apellidos_usuario" name="apellidos_usuario" placeholder="Introduzca sus apellidos...">
+                        <div id="error_apellidos" class="form-text text-danger"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dni_usuario" class="form-label">DNI</label>
+                        <input type="text" class="form-control" id="dni_usuario" name="dni_usuario" placeholder="Introduzca su dni...">
+                        <div id="error_dni" class="form-text text-danger"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="floatingTextarea">Texto</label>
+                        <textarea class="form-control" placeholder="Escriba el texto de su solicitud aquí" id="texto_usuario" name="texto_usuario"></textarea>
+                        <div id="error_texto" class="form-text text-danger"></div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                    <button type="submit" id="enviar" class="btn btn-primary">Enviar</button>
+                          
+                        </div>
+                    </div>
+                </form>
+
+                <div id="error_manipulacion" class="text-center text-danger fs-3">
+                    {% if error %}
+                        {{ error }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>    
+    {%include 'includes/footer.html' %}
+
+{% endblock content %}
+
