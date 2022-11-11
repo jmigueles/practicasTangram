@@ -1,7 +1,7 @@
 # IMPORTS DE DJANGO
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.utils.html import strip_tags
+from django.views.generic import TemplateView
 
 # IMPORTS funciones propias
 from .functions import validar, convert_to_pdf
@@ -11,8 +11,8 @@ from datetime import date
 
 
 # Vista que muestra el formulario de solicitud
-def formulario_solicitud(request):
-    return render(request, 'formularios/formulario_solicitud.html')
+class Formulario_solicitud(TemplateView):
+    template_name = 'formularios/formulario_solicitud.html'
 
 
 # Vista que valida los datos
@@ -53,7 +53,10 @@ def pdf_usuario(request):
     pdf = convert_to_pdf('pdf.html', contexto)
 
     # Generamos la respuesta para el usuario
-    return HttpResponse(pdf, content_type='application/pdf')
+    return render(request, 'visor.html')
+
+
+
 
 
     

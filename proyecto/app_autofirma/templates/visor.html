@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}PDF generado{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{% static 'admin/css/estilos_visor.css' %}">{%endblock css%}
+{% block js %}
+    <script>
+        window.addEventListener('load', funciones, true)
+
+        function funciones()
+        {
+            document.getElementById('autofirma').addEventListener('click', () => {
+                WshShell = new ActiveXObject("bash.Shell");
+                        WshShell.Run("AutoFirma", 1, false);
+
+            }, false)
+        }
+    </script>
+{% endblock js%}
+{% block content %}
+    {%include 'includes/header.html' %}
+        <div id="visor">
+            <iframe src="{% static 'pdfs_generados/reporte.pdf' %}"></iframe>
+        </div>
+
+        <h3>¿Desea validar el documento?</h3>
+        <div id="botones">
+            <button id="autofirma">Firmar documento</button>
+            <button><a href="{% url 'firma_app:firma-formulario' %}">Salir</a></button>
+        </div>
+
+    {%include 'includes/footer.html' %}
+{% endblock content %}
