@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Título de la páǵina -->
+{% block title %}Registro de pdf{% endblock title %}
+
+<!-- Bloque de JS -->
+{% block js %}<script src="{% static 'admin/js/admin/confirmacion_pdf.js' %}"></script>{%endblock js%}
+
+<!-- Bloque de contenido -->
+{% block content %}
+
+    <!-- Cabecera de la página -->
+    {%include 'includes/header.html' %}
+
+    <!-- Datos del usuario recogidos del formulario -->
+    <div class="container">
+        <div class="row justify-content-md-center ">
+            <div class="card col col-lg-6 my-2 shadow-lg">
+                <div class="card-header">
+                    <h2 class="card-title text-center">Datos de la solicitud</h2>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Datos personales del usuario: </h5>
+                    <ul>
+                        <li class="card-text">Nombre: {{usuario.nombre}}</li>
+                        <li class="card-text">Apellidos: {{usuario.primer_apellido}} {{usuario.segundo_apellido}}</li>
+                        <li class="card-text">DNI: {{usuario.dni}}</li>
+                    </ul>
+                    <h5 class="card-title">Texto: </h5>
+                    <p class="card-text">{{texto}}</p>
+
+                    <h5 class="card-title">Fecha: </h5>
+                    <p class="card-text">{{fecha}}</p>
+                </div>
+            </div>
+            <!-- Formulario oculto para el envío de datos al servidor -->
+            <form id="form" action="{% url 'firma_app:firma-pdf' %}" method="POST">{% csrf_token %}
+                <input type="hidden" name="dni" value="{{usuario.dni}}">
+                <input type="hidden" name="texto" value="{{texto}}">
+                <input type="hidden" name="fecha" value="{{fecha}}">
+                <div class="container">
+                    <div class="row">
+                        <button type="submit" id="continuar">Continuar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Pié de la página -->
+    {%include 'includes/footer.html' %}
+{% endblock content %}

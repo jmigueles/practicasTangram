@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sf8&hpis(iy_h_o1^zg!5&hx0fepb!of06og9s&_*44(m-pywl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tangramafirma.es']
 
 
 # Application definition
@@ -128,7 +128,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 #STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-PDF_DIR = BASE_DIR / 'static/pdfs_generados'
+PDF_GEN_DIR = BASE_DIR / 'static/pdfs_generados'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

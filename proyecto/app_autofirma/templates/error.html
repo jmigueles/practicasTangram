@@ -5,7 +5,7 @@
 {% block content %}
     {% include 'includes/header.html' %}
     <div class="alert alert-danger" role="alert">
-        Ha ocurrido un error generando su pdf, sentimos las molestias.
+        {{error}}
     </div>
     {% include 'includes/footer.html' %}
 {% endblock content %}

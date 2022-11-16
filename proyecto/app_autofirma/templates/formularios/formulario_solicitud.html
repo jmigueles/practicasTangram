@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Formulario de usuario {% endblock title %}
+<!-- Título de la página -->
+{% block title %} Solicitud {% endblock title %}
+
+<!-- Bloque de JS -->
 {% block js %}
-<script src="{% static 'admin/js/validacion.js' %}"></script>
+<script src="{% static 'admin/js/admin/validacion.js' %}"></script>
 {% endblock js%}
 
+<!-- Bloque de contenido de la página -->
 {% block content %}
+
+    <!-- Cabecera de la página -->
     {%include 'includes/header.html' %}
+
+    <!-- Formulario de solicitud para el usuario -->
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col col-lg-6">
@@ -20,9 +28,15 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="nombre_usuario" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="apellidos_usuario" name="apellidos_usuario" placeholder="Introduzca sus apellidos...">
-                        <div id="error_apellidos" class="form-text text-danger"></div>
+                        <label for="nombre_usuario" class="form-label">Primer apellido</label>
+                        <input type="text" class="form-control" id="apellido1_usuario" name="apellido1_usuario" placeholder="Introduzca primer apellido...">
+                        <div id="error_apellido1" class="form-text text-danger"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Segundo apellido</label>
+                        <input type="text" class="form-control" id="apellido2_usuario" name="apellido2_usuario" placeholder="Introduzca segundo apellido...">
+                        <div id="error_apellido2" class="form-text text-danger"></div>
                     </div>
 
                     <div class="mb-3">
@@ -33,17 +47,17 @@
 
                     <div class="mb-3">
                         <label for="floatingTextarea">Texto</label>
-                        <textarea class="form-control" placeholder="Escriba el texto de su solicitud aquí" id="texto_usuario" name="texto_usuario"></textarea>
+                        <textarea class="form-control" placeholder="Introduzca el texto de su solicitud aquí" id="texto_usuario" name="texto_usuario"></textarea>
                         <div id="error_texto" class="form-text text-danger"></div>
                     </div>
                     <div class="container">
                         <div class="row">
-                    <button type="submit" id="enviar" class="btn btn-primary">Enviar</button>
-                          
+                            <button type="submit" id="enviar">Enviar</button>
                         </div>
                     </div>
                 </form>
-
+                
+                <!-- Error en caso de que los datos sean manipulados o no sean correctos -->
                 <div id="error_manipulacion" class="text-center text-danger fs-3">
                     {% if error %}
                         {{ error }}
@@ -52,6 +66,8 @@
             </div>
         </div>
     </div>    
+
+    <!-- Pié de la página -->
     {%include 'includes/footer.html' %}
 
 {% endblock content %}

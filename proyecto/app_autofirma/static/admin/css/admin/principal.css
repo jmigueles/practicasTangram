@@ -1,0 +1,74 @@
+#cabecera_principal
+{
+    margin-bottom: 2vw;
+    padding: 0.5vw;
+    background-color: #3b5998;
+    display:grid;
+    grid-template-columns: 10% 80%;
+}
+
+#pie_principal
+{
+    display:grid;
+    margin-top: 2vw;
+    grid-template-columns: repeat(2, 30%);
+    justify-content: center;
+    text-align: center;
+    padding: 2vw;
+    background-color: #3b5998;
+}
+
+#pie_principal span
+{
+    display: block;
+}
+
+#pie_principal a
+{
+    color: white;
+    font-size: 1vw;
+}
+
+#pie_principal a:hover
+{
+    color: #0066FF;
+    text-decoration: none;
+    transition:1s;
+}
+
+.logotipo
+{
+    width: 6vw;
+    height:auto;
+}
+
+#titulo
+{
+    text-align: center;
+    color: white;
+    align-self: center;
+    font-size: 5vw;
+}
+
+#enviar
+{
+    width: 50%;
+    margin: 0 auto;
+    padding: 0.5% 1%;
+    color: white;
+    background-color: #3b5998;
+}
+
+#continuar
+{
+    width: 25%;
+    margin: 0 auto;
+    padding: 0.5% 1%;
+    color: white;
+    background-color: #3b5998;
+}
+
+#enviar:hover, #continuar:hover
+{
+    background-color:deepskyblue;
+}

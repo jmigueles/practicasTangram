@@ -1,45 +1,53 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<!-- Título de la página -->
 {% block title %}Registro de pdf{% endblock title %}
-{% block content %}
-    {%include 'includes/header.html' %}
-    <div class="container">
-        <div class="row justify-content-md-center">
-            <h1 class="display-5 text-center">¿Quiere generar un pdf con su solicitud?</h1>
-            <div class="card col col-lg-9 my-2">
-                <div class="card-header bg-transparent border-success">
-                    <img src="{% static 'admin/img/logo.jpg' %}" class='logotipo' alt="Logo de Tangram">
-                </div>
-               
-                <div class="card-body text-success">
-                    <p class="card-text">Estimado {{nombre}} {{apellidos}} con dni {{dni}},</p>
-                    <p class="card-text">A continuación recogemos el texto de su solicitud: {{texto}}</p>
-                    <p class="card-text">Dándole las gracias atentamente con fecha de {{fecha}}.</p>
-                </div>
 
-                <div class="card-footer bg-transparent border-success">
-                    <img src="{% static 'admin/img/logo.jpg' %}" class='logotipo' alt="Logo de Tangram">
+<!-- Bloque de JS-->
+{% block js %}<script src="{% static 'admin/js/admin/confirmacion_pdf.js' %}"></script>{%endblock js%}
+
+<!-- Bloque de contenido -->
+{% block content %}
+
+    <!-- Cabecera de la página -->
+    {%include 'includes/header.html' %}
+
+    <!-- Datos del usuario recogidos del formulario -->
+    <div class="container">
+        <div class="row justify-content-md-center ">
+            <div class="card col col-lg-6 my-2 shadow-lg">
+                <div class="card-header">
+                    <h2 class="card-title text-center">Datos de la solicitud</h2>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Datos personales del usuario: </h5>
+                    <ul>
+                        <li class="card-text">Nombre: {{usuario.nombre}}</li>
+                        <li class="card-text">Apellidos: {{usuario.primer_apellido}} {{usuario.segundo_apellido}}</li>
+                        <li class="card-text">DNI: {{usuario.dni}}</li>
+                    </ul>
+                    <h5 class="card-title">Texto: </h5>
+                    <p class="card-text">{{texto}}</p>
+
+                    <h5 class="card-title">Fecha: </h5>
+                    <p class="card-text">{{fecha}}</p>
                 </div>
             </div>
-            <form action="{% url 'firma_app:firma-pdf' %}" method="POST">{% csrf_token %}
-                <input type="hidden" name="nombre" value="{{nombre}}">
-                <input type="hidden" name="apellidos" value="{{apellidos}}">
-                <input type="hidden" name="dni" value="{{dni}}">
+            <!-- Formulario oculto para el envío de datos al servidor -->
+            <form id="form" action="{% url 'firma_app:firma-pdf' %}" method="POST">{% csrf_token %}
+                <input type="hidden" name="dni" value="{{usuario.dni}}">
                 <input type="hidden" name="texto" value="{{texto}}">
                 <input type="hidden" name="fecha" value="{{fecha}}">
                 <div class="container">
                     <div class="row">
-                      <div class="col text-center">
-                        <input class="btn btn-primary text-center" type="submit" value="Aceptar">
-                      </div>
-                      <div class="col text-center">
-                        <a href="{% url 'firma_app:firma-formulario'%}" class="btn btn-primary">Volver</a>
-                      </div>
+                        <button type="submit" id="continuar">Continuar</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- Pié de la página -->
     {%include 'includes/footer.html' %}
 {% endblock content %}

@@ -1,33 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}PDF generado{% endblock title %}
-{% block css %}<link rel="stylesheet" href="{% static 'admin/css/estilos_visor.css' %}">{%endblock css%}
-{% block js %}
-    <script>
-        window.addEventListener('load', funciones, true)
+<!-- Título de la página -->
+{% block title %}Visor de pdf{% endblock title %}
 
-        function funciones()
-        {
-            document.getElementById('autofirma').addEventListener('click', () => {
-                WshShell = new ActiveXObject("bash.Shell");
-                        WshShell.Run("AutoFirma", 1, false);
+<!-- Bloque CSS -->
+{% block css %}<link rel="stylesheet" href="{% static 'admin/css/admin/estilos_visor.css' %}">{%endblock css%}
 
-            }, false)
-        }
-    </script>
+<!-- Bloque JS -->
+{% block js%}
+<script src="{% static 'admin/js/admin/firmar_pdf.js' %}"></script>
 {% endblock js%}
+
+<!-- Bloque de contenido -->
 {% block content %}
+
+    <!-- Cabecera de la página -->
     {%include 'includes/header.html' %}
+
+        <!-- VISOR PARA MOSTRAR EL PDF AL USUARIO -->
         <div id="visor">
-            <iframe src="{% static 'pdfs_generados/reporte.pdf' %}"></iframe>
+            <iframe src="{% static 'pdfs_generados/' %}{{filename}}"></iframe>
         </div>
-
-        <h3>¿Desea validar el documento?</h3>
-        <div id="botones">
-            <button id="autofirma">Firmar documento</button>
-            <button><a href="{% url 'firma_app:firma-formulario' %}">Salir</a></button>
+        
+        <!-- FIN DE LA APP V1 -->
+        <div class="container">
+            <div class="row">
+                <button id="autofirma">Firmar</button>
+            </div>
         </div>
-
     {%include 'includes/footer.html' %}
 {% endblock content %}
