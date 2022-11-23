@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'autofirma',
         'USER': 'jose',
-        'PASSWORD': 'tangrambpm2022',
+        'PASSWORD': 'tangram2022',
         'HOST': 'localhost',
         'PORT': 5432
     }
@@ -124,12 +124,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 PDF_GEN_DIR = BASE_DIR / 'static/pdfs_generados'
 PDF_FIRM_DIR = BASE_DIR / 'static/pdfs_firmados'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
