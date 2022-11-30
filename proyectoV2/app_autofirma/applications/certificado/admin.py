@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Documento_firmado, Usuario
+from .models import DocumentoFirmado, Usuario
 
 ''' ---------------------------------------------------
         PERSONALIZACIÓN DEL MODEL DEL DOCUMENTO
@@ -8,7 +8,7 @@ class DocumentoAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'fecha', 'pdf')
     search_fields = ('fecha',)
 
-admin.site.register(Documento_firmado, DocumentoAdmin)
+admin.site.register(DocumentoFirmado, DocumentoAdmin)
 
 ''' ---------------------------------------------------
         PERSONALIZACIÓN DEL MODEL DEL USUARIO

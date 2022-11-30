@@ -29,11 +29,12 @@ function validar(e){
     let valido = true;
 
     // Datos del formulario
-    const nombre = document.getElementById('nombre_usuario');
-    const dni = document.getElementById('dni_usuario');
-    const texto = document.getElementById('texto_usuario');
-    const apellido1 = document.getElementById('apellido1_usuario');
-    const apellido2 = document.getElementById('apellido2_usuario');
+    const nombre = document.getElementById('id_nombre');
+    console.log(nombre)
+    const dni = document.getElementById('id_dni');
+    const texto = document.getElementById('id_texto');
+    const apellido1 = document.getElementById('id_primer_apellido');
+    const apellido2 = document.getElementById('id_segundo_apellido');
 
     // Validaciones
     if(!regExpNomApe.test(nombre.value)){

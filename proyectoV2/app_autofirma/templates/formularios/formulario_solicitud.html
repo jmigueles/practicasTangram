@@ -5,9 +5,7 @@
 {% block title %} Solicitud {% endblock title %}
 
 <!-- Bloque de JS-->
-{% block js %}
-<script src="{% static 'admin/js/admin/validacion.js' %}"></script>
-{% endblock js%}
+{% block js %}<script src="{% static 'admin/js/admin/validacion.js'%}"></script>{% endblock js%}
 
 <!-- Bloque de contenido de la página -->
 {% block content %}
@@ -23,33 +21,49 @@
                 <form class="shadow-lg p-3 mb-5 bg-body rounded" action="{% url 'firma_app:firma-datos' %}" method='POST'>{% csrf_token %}
                     <div class="mb-3">
                         <label for="nombre_usuario" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="Introduzca su nombre...">
+                        {{form.nombre}}
                         <div id="error_nombre" class="form-text text-danger"></div>
+                        {% if form.nombre.errors %}
+                        <div class="form-text">{{form.nombre.errors}}</div>
+                        {% endif %}
                     </div>
 
                     <div class="mb-3">
                         <label for="nombre_usuario" class="form-label">Primer apellido</label>
-                        <input type="text" class="form-control" id="apellido1_usuario" name="apellido1_usuario" placeholder="Introduzca primer apellido...">
+                        {{form.primer_apellido}}
                         <div id="error_apellido1" class="form-text text-danger"></div>
+                        {% if form.primer_apellido.errors %}
+                        <div class="form-text">{{form.primer_apellido.errors}}</div>
+                        {% endif %}
                     </div>
 
                     <div class="mb-3">
                         <label for="nombre_usuario" class="form-label">Segundo apellido</label>
-                        <input type="text" class="form-control" id="apellido2_usuario" name="apellido2_usuario" placeholder="Introduzca segundo apellido...">
+                        {{form.segundo_apellido}}
                         <div id="error_apellido2" class="form-text text-danger"></div>
+                        {% if form.segundo_apellido.errors %}
+                        <div class="form-text">{{form.segundo_apellido.errors}}</div>
+                        {% endif %}
                     </div>
-
+                    
                     <div class="mb-3">
                         <label for="dni_usuario" class="form-label">DNI</label>
-                        <input type="text" class="form-control" id="dni_usuario" name="dni_usuario" placeholder="Introduzca su dni...">
+                        {{form.dni}}
                         <div id="error_dni" class="form-text text-danger"></div>
+                        {% if form.dni.errors %}
+                        <div class="form-text">{{form.dni.errors}}</div>
+                        {% endif %}
                     </div>
 
                     <div class="mb-3">
                         <label for="floatingTextarea">Texto</label>
-                        <textarea class="form-control" placeholder="Introduzca el texto de su solicitud aquí" id="texto_usuario" name="texto_usuario"></textarea>
+                        {{form.texto}}
                         <div id="error_texto" class="form-text text-danger"></div>
+                        {% if form.texto.errors %}
+                        <div class="form-text">{{form.texto.errors}}</div>
+                        {% endif %}
                     </div>
+                    
                     <div class="container">
                         <div class="row">
                             <button type="submit" id="enviar">Enviar</button>
@@ -66,6 +80,7 @@
             </div>
         </div>
     </div>    
+
 
     <!-- Pié de la página -->
     {%include 'includes/footer.html' %}

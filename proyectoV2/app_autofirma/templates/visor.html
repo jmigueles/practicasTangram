@@ -24,7 +24,7 @@
             {% if pdf_base64%}
             <iframe src="{% static 'pdfs_generados/' %}{{filename}}"></iframe>
             {% else %}
-            <iframe src="{% static 'pdfs_firmados/' %}{{filename}}"></iframe>
+            <iframe src="{{cert.pdf.url}}"></iframe>
             {% endif %}
         </div>
         

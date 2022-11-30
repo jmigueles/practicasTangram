@@ -44,7 +44,7 @@
                         <textarea class="form-control" readonly>{{texto}}</textarea>
                     </div>
                     <!-- Formulario oculto para el envío de datos al servidor -->
-                    <form id="form" action="{% url 'firma_app:firma-pdf' %}" method="POST">{% csrf_token %}
+                    <form id="form" action="{% url 'firma_app:solicitud-pdf' %}" method="POST">{% csrf_token %}
                         <input type="hidden" name="dni" value="{{usuario.dni}}">
                         <input type="hidden" name="texto" value="{{texto}}">
                         <input type="hidden" name="fecha" value="{{fecha}}">

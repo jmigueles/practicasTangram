@@ -1,10 +1,7 @@
 from django.db import models
 
 
-''' ------------------------------------------------------------------------
-    MODELO USUARIO:
-        Se recogerán los datos de los usuarios
------------------------------------------------------------------------- '''
+# Modelo Usuario
 class Usuario(models.Model):
     # Campos de la tabla
     nombre = models.CharField(max_length=35)
@@ -21,11 +18,8 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nombre + ' ' + self.primer_apellido
 
-''' ------------------------------------------------------------------------
-    MODELO CERTIFICADO:
-        Se recogerán los pdf firmados de los usuarios junto con sus datos
------------------------------------------------------------------------- '''
-class Documento_firmado(models.Model):
+# Modelo Certificado
+class DocumentoFirmado(models.Model):
     # Campos de la tabla
     fecha = models.DateField()
     pdf = models.FileField(null=True, upload_to='solicitudes_firmadas')

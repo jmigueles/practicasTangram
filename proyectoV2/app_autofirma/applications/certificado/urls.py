@@ -7,7 +7,8 @@ app_name = 'firma_app'
 # Enrutado
 urlpatterns = [
     # Formulario para la firma
-    path('', views.formulario_solicitud, name='firma-formulario'),
+    path('', views.confirmacion_datos, name='firma-formulario'),
     path('datos_usuario/', views.confirmacion_datos, name='firma-datos'),
-    path('pdf-generado/', views.pdf_usuario, name='firma-pdf'),
+    path('pdf-generado/', views.pdf_usuario_sin_firma, name='solicitud-pdf'),
+    path('pdf-firmado/', views.pdf_usuario_con_firma, name='firma-pdf')
 ]
