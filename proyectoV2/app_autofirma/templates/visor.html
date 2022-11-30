@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Título de la página -->
+{% block title %}Visor de pdf{% endblock title %}
+
+<!-- Bloque CSS -->
+{% block css %}<link rel="stylesheet" href="{% static 'admin/css/admin/estilos_visor.css' %}">{%endblock css%}
+
+<!-- Bloque JS -->
+{% block js%}
+    <script src="{% static 'admin/js/admin/autoscript.js'%}"></script>
+    <script src="{% static 'admin/js/admin/firma_pdf.js' %}"></script>
+{% endblock js%}
+
+<!-- Bloque de contenido -->
+{% block content %}
+
+    <!-- Cabecera de la página -->
+    {%include 'includes/header.html' %}
+
+        <!-- VISOR PARA MOSTRAR EL PDF AL USUARIO -->
+        <div id="visor">
+            {% if pdf_base64%}
+            <iframe src="{% static 'pdfs_generados/' %}{{filename}}"></iframe>
+            {% else %}
+            <iframe src="{{cert.pdf.url}}"></iframe>
+            {% endif %}
+        </div>
+        
+        <!-- RENDERIZADO DEL DOCUMENTO GENERADO PARA EL CLIENTE -->
+        {% if pdf_base64%}
+        <div class="container">
+            <div class="row">
+                <button id="autofirma" class="autofirma">Firmar</button>
+            </div>
+        </div>
+
+        <form id="form" action="{% url 'firma_app:firma-pdf' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="fecha" value="{{fecha}}">
+            <input type="hidden" name="dni" value="{{usuario.dni}}">
+            <input type="hidden" id="firma" name="firma">
+            <input type="hidden" id="certificado" name="certificado">
+            <input type="hidden" id="nombreAchivo" name="nombreArchivo">
+        </form>
+
+        <input type="hidden" id="pdf_base64" value="{{pdf_base64}}">
+
+        <!-- RENDERIZADO DEL DOCUMENTO FIRMADO PARA EL CLIENTE -->
+        {% else %}
+        <div class="container">
+            <div class="row">
+                <button id="descarga" class="autofirma"><a href="{{cert.pdf.url}}" download>Descargar</a></button>
+            </div>
+        </div>
+        {% endif%}
+
+    <!-- Pié de la página -->
+    {%include 'includes/footer.html' %}
+{% endblock content %}

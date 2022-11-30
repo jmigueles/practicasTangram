@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Título de la páǵina -->
+{% block title %}Registro de pdf{% endblock title %}
+
+<!-- Bloque de JS -->
+{% block js %}<script src="{% static 'admin/js/admin/confirmacion_pdf.js' %}"></script>{%endblock js%}
+
+<!-- Bloque de contenido -->
+{% block content %}
+
+    <!-- Cabecera de la página -->
+    {%include 'includes/header.html' %}
+
+    <!-- Datos del usuario recogidos del formulario -->
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-6">
+                <h1 class="display-5 text-center">Datos de solicitud</h1>
+                <div class="shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" readonly value="{{usuario.nombre}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Primer apellido</label>
+                        <input type="text" class="form-control" value="{{usuario.primer_apellido}}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Segundo apellido</label>
+                        <input type="text" class="form-control" value="{{usuario.segundo_apellido}}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dni_usuario" class="form-label">DNI</label>
+                        <input type="text" class="form-control" value="{{usuario.dni}}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="floatingTextarea">Texto</label>
+                        <textarea class="form-control" readonly>{{texto}}</textarea>
+                    </div>
+                    <!-- Formulario oculto para el envío de datos al servidor -->
+                    <form id="form" action="{% url 'firma_app:solicitud-pdf' %}" method="POST">{% csrf_token %}
+                        <input type="hidden" name="dni" value="{{usuario.dni}}">
+                        <input type="hidden" name="texto" value="{{texto}}">
+                        <input type="hidden" name="fecha" value="{{fecha}}">
+                        <div class="container">
+                            <div class="row">
+                                <button type="submit" id="continuar">Continuar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Pié de la página -->
+    {%include 'includes/footer.html' %}
+{% endblock content %}
