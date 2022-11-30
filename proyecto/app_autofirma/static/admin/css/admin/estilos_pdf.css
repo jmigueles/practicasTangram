@@ -1,0 +1,38 @@
+.logo_cab, .log_pie
+{
+    width:150px;
+    height: 50px;
+}
+
+#header_content
+{
+    border-bottom: 1px solid gray;
+}
+
+#footer_content
+{
+    border-top: 1px solid gray;
+}
+
+#contenido
+{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+}
+
+
+@page {
+    size: a4 portrait;
+        @frame header_frame {           
+            -pdf-frame-content: header_content;
+            left: 30pt; width: 535pt; top: 25pt; height: 40pt;
+        }
+        @frame content_frame {          
+            left: 30pt; width: 535pt; top: 75pt; height: 632pt;
+        }
+        @frame footer_frame {           
+            -pdf-frame-content: footer_content;
+            left: 30pt; width: 512pt; top: 780pt; height: 40pt;
+        }
+}
