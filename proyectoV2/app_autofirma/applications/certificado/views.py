@@ -17,11 +17,13 @@ import base64
 from .functions import convert_to_pdf, date_format
 
 
-# Formulario de solicitud
 def confirmacion_datos(request):    
     """
-    Se muestra al usuario un formulario de solicitud y valida los campos al enviarlo
+    Vista que muestra al usuario un formulario de solicitud y confirma tras el POST
+    desde la plantilla que el formulario es válido, en caso contrario se le devuelve
+    a la vista con los errores encontrados.
     """
+
     if request.method=='POST':
         form = SolicitudForm(request.POST)
 
@@ -49,7 +51,9 @@ def confirmacion_datos(request):
 
 def pdf_usuario_sin_firma(request):
     """
-    Vista para generar un pdf con la solicitud del usuario
+    Vista que renderiza la plantilla html 'pdf.html' junto con los datos introducidos
+    por el usuario a pdf. Una vez hecho esto se mostrará al usuario.
+    Si se intenta acceder por GET a la vista se retornará al usuario al inicio.
     """
 
     if request.method=='POST' and 'dni' in request.POST:
@@ -67,7 +71,8 @@ def pdf_usuario_sin_firma(request):
 
             # Se convierte el html en pdf
             filename = 'solicitud.pdf'
-            conf = convert_to_pdf('pdf.html', filename, contexto)
+            template = 'pdf.html'
+            conf = convert_to_pdf(template, filename, contexto)
 
             # Se comprueba si la conversión se llevo a cabo de forma adecuada
             if not conf: 
@@ -89,9 +94,11 @@ def pdf_usuario_sin_firma(request):
 
 def pdf_usuario_con_firma(request):
     """
-    Vista para mostrar la solicitud firmada al usuario
+    Vista que se encarga de guardar el documento firmado en la base de datos, más tarde
+    en un directorio local junto con el dni de usuario y finalmente se retorna a la template 'visor.html'
+    mostrándole el documento para descargar.
     """
-    # Si recibimos el documento firmado por el usuario
+
     if request.method == 'POST' and 'firma' in request.POST:
 
         # Obtenemos el documento firmado y lo decodificamos

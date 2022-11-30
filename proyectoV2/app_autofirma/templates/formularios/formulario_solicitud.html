@@ -4,21 +4,21 @@
 <!-- Título de la página -->
 {% block title %} Solicitud {% endblock title %}
 
+<!-- Bloque CSS -->
+{% block css %} <link rel="stylesheet" href="{% static 'admin/css/admin/validaciones.css'%}">{% endblock css%}
+
 <!-- Bloque de JS-->
 {% block js %}<script src="{% static 'admin/js/admin/validacion.js'%}"></script>{% endblock js%}
 
 <!-- Bloque de contenido de la página -->
 {% block content %}
-
-    <!-- Cabecera de la página -->
-    {%include 'includes/header.html' %}
     
     <!-- Formulario de solicitud para el usuario-->
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col col-lg-6">
                 <h1 class="display-5 text-center">Formulario de solicitud</h1>
-                <form class="shadow-lg p-3 mb-5 bg-body rounded" action="{% url 'firma_app:firma-datos' %}" method='POST'>{% csrf_token %}
+                <form class="shadow-lg p-3 mb-5 bg-body rounded" action="" method='POST'>{% csrf_token %}
                     <div class="mb-3">
                         <label for="nombre_usuario" class="form-label">Nombre</label>
                         {{form.nombre}}
@@ -80,10 +80,6 @@
             </div>
         </div>
     </div>    
-
-
-    <!-- Pié de la página -->
-    {%include 'includes/footer.html' %}
 
 {% endblock content %}
 

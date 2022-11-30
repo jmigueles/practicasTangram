@@ -1,8 +1,16 @@
 from django.db import models
 
 
-# Modelo Usuario
 class Usuario(models.Model):
+    """
+    Modelo Usuario
+
+    Atributos:
+        nombre (str): Representa la columna nombre en la base de datos. Máximo 35 caracteres
+        primer_apellido (str): Representa la columna primer_apellido en la base de datos. Máximo 35 caracteres
+        segundo_apellido (str): Representa la columna segundo_apellido en la base de datos. Máximo 35 caracteres.
+        dni (str): Representa la columna dni en la base de datos. Máximo 9 caracteres
+    """
     # Campos de la tabla
     nombre = models.CharField(max_length=35)
     primer_apellido = models.CharField(max_length=35)
@@ -18,9 +26,16 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nombre + ' ' + self.primer_apellido
 
-# Modelo Certificado
+
 class DocumentoFirmado(models.Model):
-    # Campos de la tabla
+    """
+    Modelo DocumentoFirmado
+
+    Atributos:
+        fecha (date): Representa la columna fecha en la base de datos.
+        pdf(filefield): Representa la columna pdf en la base de datos y almacena un path al documento firmado.
+        Usuario(fk): Representa la columna usuario y es una foreign key a la tabla Usuario
+    """
     fecha = models.DateField()
     pdf = models.FileField(null=True, upload_to='solicitudes_firmadas')
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='modelo')

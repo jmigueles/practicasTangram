@@ -10,6 +10,20 @@ import re
 
 # Formulario de registro de solicitud
 class SolicitudForm(forms.Form):
+    """
+    SolicitudForm: Formulario de inserción de datos de solicitud por parte del usuario.
+
+    Nota:
+        Cada uno de los campos que se describen a continuación tiene su respectivo
+        'clean' más abajo encargado de filtrar los datos de forma correcta.
+
+    Campos:
+        nombre (str): Campo de tipo texto para almacenar el nombre
+        primer_apellido (str): Campo de tipo texto para almacenar el primer apellido
+        segundo_apellid (str): Campo de tipo texto para almacenar el segundo apellido
+        dni (str): Campo de tipo texto para almacenar el dni
+        texto (str): Campo de tipo texto para almacenar el texto
+    """
     nombre = forms.CharField(
         widget=forms.TextInput(
             attrs={ 'placeholder':'Introduzca su nombre...', 'class':'form-control' }

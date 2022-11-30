@@ -7,11 +7,9 @@ from django.conf import settings
 from xhtml2pdf import pisa
 
 # Librerías de python
-import re
 import os 
 
 
-# CallBack para establecer las rutas de los static y media
 def link_callback(uri, rel):
     """
     Convierte las URIs del settings para que xhtml2pdf pueda acceder a ellas
@@ -46,6 +44,14 @@ def link_callback(uri, rel):
 def convert_to_pdf(template, filename, context={},):
     """
     Convierte una template pasada como argumento junto con el contexto dado a pdf.
+    
+    Args:
+        template: Plantilla html a convertir a pdf
+        filename: Nombre que tendrá el archivo convertido a .pdf
+        contexto: Diccionario con los datos que se sustituirán en el html antes de la conversión
+
+    Returns:
+        bool: Valor de retorno. True en caso de éxito, False de otra forma
     """
     # Creamos el archivo que contendrá el pdf temporalmente
     archivo = open(str(settings.PDF_GEN_DIR) + '/' + filename, 'wb+')
@@ -65,7 +71,13 @@ def convert_to_pdf(template, filename, context={},):
 
 def date_format(date):
     """
-    Devuelve un string en español de una fecha dada
+    Función que transforma una fecha pasada por argumento en una cadena en español.
+
+    Args:
+        date: Objeto fecha sobre el cual se ejecutarán las operaciones
+
+    Returns:
+        string: Valor de retorno. Cadena con la fecha pasada por argumento en español.
     """
     # Separamos la fecha en componentes
     fecha = f'{date}'.split()[0]

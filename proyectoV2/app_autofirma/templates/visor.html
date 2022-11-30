@@ -16,9 +16,6 @@
 <!-- Bloque de contenido -->
 {% block content %}
 
-    <!-- Cabecera de la página -->
-    {%include 'includes/header.html' %}
-
         <!-- VISOR PARA MOSTRAR EL PDF AL USUARIO -->
         <div id="visor">
             {% if pdf_base64%}
@@ -55,7 +52,4 @@
             </div>
         </div>
         {% endif%}
-
-    <!-- Pié de la página -->
-    {%include 'includes/footer.html' %}
 {% endblock content %}
